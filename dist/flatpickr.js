@@ -258,7 +258,7 @@ function FlatpickrInstance(element, config) {
 
 			if (self.config.animate) {
 				bind(self.daysContainer, ["webkitAnimationEnd", "animationend"], animateDays);
-				bind(self.monthNav, ["webkitAnimationEnd", "animationend"], animateMonths);
+				// bind(self.monthNav, ["webkitAnimationEnd", "animationend"], animateMonths);
 			}
 		}
 
@@ -328,20 +328,20 @@ function FlatpickrInstance(element, config) {
   * @param {Event} e the animation event
   */
 	function animateMonths(e) {
-		switch (e.animationName) {
-			case "fpSlideLeftNew":
-			case "fpSlideRightNew":
-				self.navigationCurrentMonth.classList.remove("slideLeftNew");
-				self.navigationCurrentMonth.classList.remove("slideRightNew");
-				var nav = self.navigationCurrentMonth;
-
-				while (nav.nextSibling && /curr/.test(nav.nextSibling.className)) {
-					self.monthNav.removeChild(nav.nextSibling);
-				}while (nav.previousSibling && /curr/.test(nav.previousSibling.className)) {
-					self.monthNav.removeChild(nav.previousSibling);
-				}self.oldCurMonth = null;
-				break;
-		}
+		// switch (e.animationName) {
+		// 	case "fpSlideLeftNew":
+		// 	case "fpSlideRightNew":
+		// 		self.navigationCurrentMonth.classList.remove("slideLeftNew");
+		// 		self.navigationCurrentMonth.classList.remove("slideRightNew");
+		// 		var nav = self.navigationCurrentMonth;
+    //
+		// 		while (nav.nextSibling && /curr/.test(nav.nextSibling.className)) {
+		// 			self.monthNav.removeChild(nav.nextSibling);
+		// 		}while (nav.previousSibling && /curr/.test(nav.previousSibling.className)) {
+		// 			self.monthNav.removeChild(nav.previousSibling);
+		// 		}self.oldCurMonth = null;
+		// 		break;
+		// }
 	}
 
 	/**
@@ -782,29 +782,29 @@ function FlatpickrInstance(element, config) {
 			}
 		}
 
-		self.oldCurMonth = self.navigationCurrentMonth;
-
-		self.navigationCurrentMonth = self.monthNav.insertBefore(self.oldCurMonth.cloneNode(true), delta > 0 ? self.oldCurMonth.nextSibling : self.oldCurMonth);
+		// self.oldCurMonth = self.navigationCurrentMonth;
+    //
+		// self.navigationCurrentMonth = self.monthNav.insertBefore(self.oldCurMonth.cloneNode(true), delta > 0 ? self.oldCurMonth.nextSibling : self.oldCurMonth);
 
 		if (delta > 0) {
 			self.daysContainer.firstChild.classList.add("slideLeft");
 			self.daysContainer.lastChild.classList.add("slideLeftNew");
 
-			self.oldCurMonth.classList.add("slideLeft");
-			self.navigationCurrentMonth.classList.add("slideLeftNew");
+			// self.oldCurMonth.classList.add("slideLeft");
+			// self.navigationCurrentMonth.classList.add("slideLeftNew");
 		} else if (delta < 0) {
 			self.daysContainer.firstChild.classList.add("slideRightNew");
 			self.daysContainer.lastChild.classList.add("slideRight");
 
-			self.oldCurMonth.classList.add("slideRight");
-			self.navigationCurrentMonth.classList.add("slideRightNew");
+			// self.oldCurMonth.classList.add("slideRight");
+			// self.navigationCurrentMonth.classList.add("slideRightNew");
 		}
 
 		self.currentMonthElement = self.navigationCurrentMonth.firstChild;
 		self.currentYearElement = self.navigationCurrentMonth.lastChild.childNodes[0];
 
 		updateNavigationCurrentMonth();
-		self.oldCurMonth.firstChild.textContent = self.utils.monthToStr(self.currentMonth - delta);
+		// self.oldCurMonth.firstChild.textContent = self.utils.monthToStr(self.currentMonth - delta);
 
 		triggerEvent("MonthChange");
 
